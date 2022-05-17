@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header bg-hands">Guía</div>
+                <div class="card-header bg-primary text-white text-uppercase fw-bold">Guía</div>
 
                 <div class="card-body">
                     <h5 class="text-center"> Instrucciones y planeamientos de LESCO para los Profesores de Hands On</h5> 

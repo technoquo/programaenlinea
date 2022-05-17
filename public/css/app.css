@@ -22537,8 +22537,8 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
-.cambiarcolor {
-  color: #ff0000;
+.fondo_rojo {
+  background-color: #D83434;
 }
 
 .bg-hands {
