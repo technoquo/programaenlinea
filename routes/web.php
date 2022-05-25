@@ -41,6 +41,8 @@ Route::prefix('/niveles')->group(function(){
      
         Route::get('/', [SemanasController::class, 'index']);
         Route::post('/AgregarPlan', [SemanasController::class, 'AgregarPlan']);
+        Route::post('/ListaPlanPorNivel', [SemanasController::class, 'ListaPlanPorNivel']);
+      
     // Route::get('/{id}', [NivelesController::class, 'show'])->name('blog.show');
     //   Route::get('/create', [SemanasController::class, 'create'])->name('semanas.create');
        

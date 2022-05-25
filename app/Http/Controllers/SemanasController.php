@@ -18,28 +18,6 @@ class SemanasController extends Controller
     {
        
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('semanas.create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreSemanaRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreSemanaRequest $request)
-    {
-      
-    }
-
     public function AgregarPlan(Request $request)
     {
        
@@ -59,6 +37,44 @@ class SemanasController extends Controller
             echo json_encode($data);
     }
 
+    public function ListaPlanPorNivel(Request $request)
+    {
+       
+        
+        
+        $arr['data'] = Semana::where('id_nivel', '=', $request->id_nivel)->orderBy('semana', 'ASC')->get();
+                
+
+            echo json_encode($arr);
+            exit;
+    }
+
+  
+
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \App\Http\Requests\StoreSemanaRequest  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(StoreSemanaRequest $request)
+    {
+      
+    }
+
+ 
+
     /**
      * Display the specified resource.
      *
@@ -73,24 +89,42 @@ class SemanasController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Semana  $semana
+     * @param  int  $id_semana
      * @return \Illuminate\Http\Response
      */
-    public function edit(Semana $semana)
+    public function edit($id_semana)
     {
-        //
+        
+        
+        return view('semana.edit')->with('plan', Semana::where('id_semana', $id_semana)->first());
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateSemanaRequest  $request
-     * @param  \App\Models\Semana  $semana
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id_semana
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateSemanaRequest $request, Semana $semana)
+    public function update(Request $request, $id_semana)
     {
-        //
+        
+        $request->validate([
+            'wysiwyg-editor' => 'required',         
+            'codigo' => 'required'         
+        ]);
+
+          Semana::where('id_semana',$id_semana)
+                 ->update([
+                    'contenido' => $request->input('wysiwyg-editor'),                    
+                    'semana' =>  $request->input('numero_semana'),  
+                    'codigo_video' =>  $request->input('codigo'),                   
+                   // 'user_id'  => auth()->user()->id,
+            
+        ]);
+
+        return redirect('/home')
+                ->with('message', '¡Tu plan ha sido actualizada!');
     }
 
     /**
