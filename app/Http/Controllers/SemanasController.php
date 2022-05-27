@@ -27,7 +27,8 @@ class SemanasController extends Controller
                 'id_nivel' => $request->id_nivel,
                 'contenido' => $request->contenido,
                 'semana' => $request->semana,
-                'codigo_video' => $request->codigo_video                
+                'codigo_video' => $request->codigo_video,
+                'username'  => auth()->user()->name                
                 
             ]);
 
@@ -96,7 +97,7 @@ class SemanasController extends Controller
     {
         
         
-        return view('semana.edit')->with('plan', Semana::where('id_semana', $id_semana)->first());
+        return view('semanas.edit')->with('plan', Semana::where('id_semana', $id_semana)->first());
     }
 
     /**
@@ -119,7 +120,7 @@ class SemanasController extends Controller
                     'contenido' => $request->input('wysiwyg-editor'),                    
                     'semana' =>  $request->input('numero_semana'),  
                     'codigo_video' =>  $request->input('codigo'),                   
-                   // 'user_id'  => auth()->user()->id,
+                    'username'  => auth()->user()->name          
             
         ]);
 

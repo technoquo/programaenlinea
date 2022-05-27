@@ -100,7 +100,8 @@ $(document).on("click", "#crear", function(event) {
 function MostrarContenido(x){
 
 
-
+    let permiso = $('#permiso').val();
+   
     $(".nav-pills").html('');
     $("#v-pills-tabContent").html('');
     let list = "";
@@ -120,12 +121,15 @@ function MostrarContenido(x){
         $.each(response['data'], function(index, value) {  
            
           const activar = ( value.semana === 1 ) ? 'active':''          
-          list +=' <button class="nav-link ' + activar +'" id="v-pills-'+value.semana+'-tab" data-bs-toggle="pill" data-bs-target="#v-pills-'+value.semana+'" type="button" role="tab" aria-controls="v-pills-'+value.semana+'" aria-selected="true">Semana '+value.semana+'</button>';      
+          list +=' <button class="pill-boton nav-link ' + activar +'" id="v-pills-'+value.semana+'-tab" data-bs-toggle="pill" data-bs-target="#v-pills-'+value.semana+'" type="button" role="tab" aria-controls="v-pills-'+value.semana+'" aria-selected="true">Semana '+value.semana+'</button>';      
          
         });        
       $(".nav-pills").append(list);
+  
       $.each(response['data'], function(index, value) {     
-        const mostrar = ( value.semana === 1 ) ? 'show active':''    
+        const mostrar = ( value.semana === 1 ) ? 'show active':''  
+      
+    
         list2 +='<div class="tab-pane fade ' + mostrar +'" id="v-pills-'+value.semana+'" role="tabpanel" aria-labelledby="v-pills-'+value.semana+'-tab">';   
         list2 +='<div class="boton_editar"><a class="btn btn-secondary" href="/semanas/'+ value.id_semana +'/edit">Editar plan</a></div>';  
         list2 +='<div class="form-group">'+value.contenido+'</div>';  

@@ -22548,3 +22548,7 @@ textarea.form-control-lg {
 .boton_editar {
   margin-left: 50%;
 }
+
+.pill-boton {
+  width: 150px;
+}

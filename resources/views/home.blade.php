@@ -33,6 +33,7 @@
                         </select>
                     </div>
                 </div>
+                <input name="permiso" id="permiso" type="hidden" value="{{  Auth::user()->permission }}"/>
                 <div class=" p-3">
                     @if (Auth::user()->permission == 1)
                         <a class="btn btn-primary d-none" id="create_week">Crear contenido</a>
@@ -53,6 +54,7 @@
             <div class="col-md-8">
                 <h2 class="text-center" id="nombre_nivel"></h2>
                 <div class="card p-5">
+                    <div class="p-2"><a class="btn btn-secondary" href="/home">Volver</a></div>
                     <div class="card-body fondo_rojo">
                         <form>
 
@@ -104,7 +106,7 @@
 
 
         </div>
-        @if (Auth::user()->permission == 1)
+        @if (Auth::user()->permission == 0)
       
         <style>
             .boton_editar {
