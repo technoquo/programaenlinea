@@ -71,7 +71,7 @@
                                     <option value="9">Semana 9</option>
                                     <option value="10">Semana 10</option>
                                     <option value="11">Semana 11</option>
-                                    <option value="11">Semana 12</option>
+                                    <option value="12">Semana 12</option>
                                 </select>
                             </p>
                             <div class="form-group">
