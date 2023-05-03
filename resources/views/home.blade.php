@@ -2,25 +2,24 @@
 
 @section('content')
     <div class="container">
- 
+
         <div id="seleccion" class="row justify-content-center">
             <div class="col-md-8">
 
                 @if (Auth::user()->permission == 1)
                     <div><a href="{{ route('nivel.create') }}">Crear nuevo nivel</a></div>
-               
                 @endif
 
 
                 <div class="card">
-                
+
                     <div class="card-header bg-primary text-white">Programa de Hands On</div>
                     @if (session()->has('message'))
-                    <div class="text-center">
-                       <p class="alert-info" >
-                          {{ session()->get('message') }}
-                       </p>   
-                    </div>
+                        <div class="text-center">
+                            <p class="alert-info">
+                                {{ session()->get('message') }}
+                            </p>
+                        </div>
                     @endif
                     <div class="card-body">
                         <select id="selectNivel" class="form-select" aria-label="Default select example"
@@ -33,21 +32,22 @@
                         </select>
                     </div>
                 </div>
-                <input name="permiso" id="permiso" type="hidden" value="{{  Auth::user()->permission }}"/>
+                <input name="permiso" id="permiso" type="hidden" value="{{ Auth::user()->permission }}" />
                 <div class=" p-3">
                     @if (Auth::user()->permission == 1)
                         <a class="btn btn-primary d-none" id="create_week">Crear contenido</a>
                     @endif
                     <div class="d-flex align-items-start p-5">
-                        <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical"></div>
+                        <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist"
+                            aria-orientation="vertical"></div>
                         <div class="tab-content" id="v-pills-tabContent"></div>
-                    
+
                     </div>
                 </div>
 
 
             </div>
-      
+
 
         </div>
         <div id="creacion" class="row justify-content-center d-none">
@@ -72,6 +72,9 @@
                                     <option value="10">Semana 10</option>
                                     <option value="11">Semana 11</option>
                                     <option value="12">Semana 12</option>
+                                    <option value="13">Semana 13</option>
+                                    <option value="14">Semana 14</option>
+                                    <option value="15">Semana 15</option>
                                 </select>
                             </p>
                             <div class="form-group">
@@ -79,7 +82,8 @@
                                 <textarea class="ckeditor form-control" id="contenido" name="wysiwyg-editor"></textarea>
                             </div>
                             <div class="form-group p-4">
-                                <label for="introduccion" class="text-white fw-bold">Video sobre las instrúcciones para los profesores de Hands On</label>
+                                <label for="introduccion" class="text-white fw-bold">Video sobre las instrúcciones para los
+                                    profesores de Hands On</label>
                                 <input type="text" class="form-control" name="codigo" placeholder="Código Youtube"
                                     autocomplete="off">
                             </div>
@@ -107,11 +111,10 @@
 
         </div>
         @if (Auth::user()->permission == 0)
-      
-        <style>
-            .boton_editar {
-                display: none;
-            }
-        </style>
-    @endif
+            <style>
+                .boton_editar {
+                    display: none;
+                }
+            </style>
+        @endif
     @endsection

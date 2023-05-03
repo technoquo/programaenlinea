@@ -16,41 +16,40 @@ class SemanasController extends Controller
      */
     public function index()
     {
-       
     }
     public function AgregarPlan(Request $request)
     {
-       
-        
-          Semana::create([
-                
-                'id_nivel' => $request->id_nivel,
-                'contenido' => $request->contenido,
-                'semana' => $request->semana,
-                'codigo_video' => $request->codigo_video,
-                'username'  => auth()->user()->name                
-                
-            ]);
 
-            $data = array('message'=>'success');
-        
 
-            echo json_encode($data);
+        Semana::create([
+
+            'id_nivel' => $request->id_nivel,
+            'contenido' => $request->contenido,
+            'semana' => $request->semana,
+            'codigo_video' => $request->codigo_video,
+            'username'  => auth()->user()->name
+
+        ]);
+
+        $data = array('message' => 'success');
+
+
+        echo json_encode($data);
     }
 
     public function ListaPlanPorNivel(Request $request)
     {
-       
-        
-        
-        $arr['data'] = Semana::where('id_nivel', '=', $request->id_nivel)->orderBy('semana', 'ASC')->get();
-                
 
-            echo json_encode($arr);
-            exit;
+
+
+        $arr['data'] = Semana::where('id_nivel', '=', $request->id_nivel)->orderBy('semana', 'ASC')->get();
+
+
+        echo json_encode($arr);
+        exit;
     }
 
-  
+
 
 
     /**
@@ -60,21 +59,11 @@ class SemanasController extends Controller
      */
     public function create()
     {
-        
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreSemanaRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreSemanaRequest $request)
-    {
-      
-    }
 
- 
+
+
 
     /**
      * Display the specified resource.
@@ -95,8 +84,8 @@ class SemanasController extends Controller
      */
     public function edit($id_semana)
     {
-        
-        
+
+
         return view('semanas.edit')->with('plan', Semana::where('id_semana', $id_semana)->first());
     }
 
@@ -109,23 +98,23 @@ class SemanasController extends Controller
      */
     public function update(Request $request, $id_semana)
     {
-        
+
         $request->validate([
-            'wysiwyg-editor' => 'required',         
-            'codigo' => 'required'         
+            'wysiwyg-editor' => 'required',
+            'codigo' => 'required'
         ]);
 
-          Semana::where('id_semana',$id_semana)
-                 ->update([
-                    'contenido' => $request->input('wysiwyg-editor'),                    
-                    'semana' =>  $request->input('numero_semana'),  
-                    'codigo_video' =>  $request->input('codigo'),                   
-                    'username'  => auth()->user()->name          
-            
-        ]);
+        Semana::where('id_semana', $id_semana)
+            ->update([
+                'contenido' => $request->input('wysiwyg-editor'),
+                'semana' =>  $request->input('numero_semana'),
+                'codigo_video' =>  $request->input('codigo'),
+                'username'  => auth()->user()->name
+
+            ]);
 
         return redirect('/home')
-                ->with('message', '¡Tu plan ha sido actualizada!');
+            ->with('message', '¡Tu plan ha sido actualizada!');
     }
 
     /**
